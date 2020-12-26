@@ -6,6 +6,8 @@ import 'package:social_app/Screens/LogInProcess/login.dart';
 import 'package:social_app/Screens/LogInProcess/signup.dart';
 import 'package:social_app/Screens/wrapper.dart';
 import 'package:social_app/Services/auth.dart';
+import 'package:social_app/chat/ChatScreen.dart';
+import 'package:social_app/chat/FireUsers.dart';
 
 import 'Models/user.dart';
 
@@ -22,14 +24,15 @@ class MyApp extends StatelessWidget {
     return StreamProvider<USER>.value(
       value: AuthService().user,
         child: MaterialApp(
-        home: Wrapper(),
-        //  routes: {
-        //                       '/':(context) => LogIn(),
+        //home: Wrapper(),
+          routes: {
+                           '/':(context) => Wrapper(),"/users":(context)=>fireUsersS(),"/chat":(context)=>chatscreen()
+
         //                       '/signup':(context) => SignUp(),
 
    
         //                       // '/location':(context) => Choose_Location(),
-        //                     },
+                            },
         
       ),
     );

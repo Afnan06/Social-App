@@ -54,6 +54,10 @@ class _HomeState extends State<Home> {
                       ))),
             ),
           ),
+          RaisedButton.icon(onPressed: (){
+            Navigator.pushNamed(context, "/users");
+           // Navigator.push(context, "/users");
+          }, icon: Icon(Icons.search), label: Text("chat with users"))
          
         ],
       ),

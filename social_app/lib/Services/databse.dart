@@ -10,7 +10,7 @@ class DatabaseService{
   //every user has unique id
   //document id
 
-  final CollectionReference userCredentials= Firestore.instance.collection('UserCredentials');
+  final CollectionReference userCredentials= FirebaseFirestore.instance.collection('UserCredentials');
 
   //1st signup and second when updating
   Future useUpdateData(String name,String email,String password,String dob,String gender,String country)async{
@@ -22,7 +22,9 @@ class DatabaseService{
         'password':password,
         'dob':dob,
         'gender':gender,
-        'country':country
+        'country':country,
+        'id':uid,
+
 
 
       }

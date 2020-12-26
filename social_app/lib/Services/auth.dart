@@ -1,13 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_app/Models/user.dart';
 import 'package:social_app/Services/databse.dart';
+import 'package:social_app/chat/FireUsers.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService{
    final FirebaseAuth _auth= FirebaseAuth.instance;
+   String current="";
+   //SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+
 
    //user object based on firebase result of user 
    USER _userFromFirebaseUser( user){
      return user != null ? USER(uid: user.uid) :null;
+
    }
    //auth change user stream, pass to main.dart
    Stream<USER> get user{
@@ -44,10 +50,19 @@ class AuthService{
 
 
   //sign  with email
+//   String current="";
 
    Future signInWithEmailAndPassword(String email, String password)async {
     try{
+      SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
       UserCredential result =await _auth.signInWithEmailAndPassword(email: email, password: password);
+      print("checking");
+      //current=result.user.uid;
+     // print(current);
+      sharedPreferences.setString("id", result.user.uid);
+
+      //print(result.user["name"])
+     // print(SocialAppUsers[0]);
       return _userFromFirebaseUser( result.user);
 
     }catch(e){
@@ -58,6 +73,11 @@ class AuthService{
   }
 
   //register with email
+   List SocialAppUsers=["0rE5EcadZkf5hQ9rV9LmST5DnV22","fE2MZteZe3fzf8XR2zzzWG7iG7B3",
+     "he69hmzVgwglREt5mq2mO7rG0sN2","rnT9BsKPemSOd4Ay8vko5ZGmgRL2","tXyfZLf0OoN0Wb84SGHeleA3OZ12",
+   ];
+
+
 
   Future registerWithEmailAndPassword(String email, String password,String name, String gender, String dob,String country)async {
     try{
@@ -65,6 +85,9 @@ class AuthService{
 
       //create a new id with used uid
       await DatabaseService(uid: result.user.uid).useUpdateData(name, email, password, dob,gender, country);
+      SocialAppUsers.add(result);
+
+      print(result);
 
       return _userFromFirebaseUser( result.user);
 
