@@ -16,6 +16,7 @@ class _ChatPageState extends State<ChatPage> {
   String groupChatId;
   String userID;
   String msg;
+  String anotherUserId;
  // String anotherUserId;
   TextEditingController textEditingController = TextEditingController();
 
@@ -31,7 +32,7 @@ class _ChatPageState extends State<ChatPage> {
 
     userID = sharedPreferences.getString('id');
 
-    String anotherUserId = widget.docu['id'];
+    anotherUserId = widget.docu['id'];
     print(userID);
     print(anotherUserId);
 
@@ -47,7 +48,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat page!'),
+        title: Text("chat"),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
@@ -142,7 +143,7 @@ class _ChatPageState extends State<ChatPage> {
                 ? Colors.grey
                 : Colors.greenAccent),
             borderRadius: BorderRadius.circular(8.0)),
-        child: (obj1['tyoe'] == 'text')
+        child: (obj1['type'] == 'text')
             ? Text('${obj1['content']}')
             : Image.network(obj1['content']),
       ),

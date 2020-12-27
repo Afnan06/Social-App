@@ -11,12 +11,13 @@ class fireUsersS extends StatefulWidget {
 }
 
 class _fireUsersSState extends State<fireUsersS> {
- String userId;
+
  @override
  void initState() {
    getUserId();
    super.initState();
  }
+   String userId;
    getUserId() async {
    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
@@ -46,29 +47,27 @@ class _fireUsersSState extends State<fireUsersS> {
     );
   }
 
-   buildItem(doc) {
-   if (userId!=doc['id']){
+   buildItem(obj1) {
+   if (userId!=obj1['id']){
      return
-       //  userId!=doc['id']?
        Column(
          children: [
            Text(userId),
-           Text(doc['id'],style:TextStyle(color:Colors.red,fontWeight:FontWeight.bold),),
-           // Text("viewwwwwwwwwwwwwwwwwwwwwwwwwwwww users"),
+           Text(obj1['id'],style:TextStyle(color:Colors.red,fontWeight:FontWeight.bold),),
 
         GestureDetector(
           onTap:(){
             print("ok");
-            Navigator.pushNamed(context, "/chat");
-//           Navigator.push(context,
-//         MaterialPageRoute(builder: (context) => ChatPage(docu: doc)));
+
+           Navigator.push(context,
+         MaterialPageRoute(builder: (context) => ChatPage(docu: obj1)));
 
         },child:
 
                Padding
              (padding:EdgeInsets.all(6),
                child: Card(
-                   child: Text(doc["name"],style:TextStyle(color:Colors.green,fontSize: 23),))),
+                   child: Text(obj1["name"],style:TextStyle(color:Colors.green,fontSize: 23),))),
             ),
 
 
@@ -79,57 +78,6 @@ class _fireUsersSState extends State<fireUsersS> {
    else{
      Text("ERROR");
    }
-//   return
-// //  userId!=doc['id']?
-//    Column(
-//      children: [
-//        Text(userId),
-//       Text(doc['id'],style:TextStyle(color:Colors.red,fontWeight:FontWeight.bold),),
-//       // Text("viewwwwwwwwwwwwwwwwwwwwwwwwwwwww users"),
-//
-////        GestureDetector(
-////          onTap:(){
-////            Navigator.push(context,
-////         MaterialPageRoute(builder: (context) => ChatPage(docs: doc)));
-////
-////        },
-//
-//           Padding
-//            (padding:EdgeInsets.all(6),
-//             child: Card(
-//                 child: Text(doc["name"],style:TextStyle(color:Colors.green,fontSize: 23),))),
-//      //  ),
-//
-//
-//
-//      ],
-//    );
-       // :Container(
-     //child:Text("ERRROR IN "),
 
-
-
-//    return
-//   (userId != doc['id'])
-//    ?
-//       GestureDetector(
-//     onTap: () {
-//      Navigator.push(context,
-//          MaterialPageRoute(builder: (context) => chatpage(docs: doc)));
-//    },
- // child:
-//      Card(
-//        color: Colors.lightBlue,
-//        child: Padding(
-//          padding: const EdgeInsets.all(8.0),
-//          child: Container(
-//            child: Center(
-//              child: Text(doc['name']),
-//            ),
-//          ),
-//        ));
-
-
-     //  : Container();
   }
 }
