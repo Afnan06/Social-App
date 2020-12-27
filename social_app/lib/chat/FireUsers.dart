@@ -48,7 +48,7 @@ class _fireUsersSState extends State<fireUsersS> {
   }
 
    buildItem(obj1) {
-   if (userId!=obj1['id']){
+  // if (userId!=obj1['id']){
      return
        Column(
          children: [
@@ -74,10 +74,10 @@ class _fireUsersSState extends State<fireUsersS> {
 
          ],
        );
-   }
-   else{
-     Text("ERROR");
-   }
+ //  }
+//   else{
+//     Text("ERROR");
+//   }
 
   }
 }
