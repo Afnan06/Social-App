@@ -24,27 +24,28 @@ final AuthService _auth= AuthService();
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Loading(): Scaffold(backgroundColor:Colors.green[700],
-      appBar:
-        PreferredSize(child: AppBar(
-          actions: [
-//                      FlatButton.icon(
-//            icon:Icon (Icons.person,size:20,),
-//            label: Text("Sign up"),
-//            onPressed: ()async {
-//                       widget.toggleView();
+   return loading ? Loading(): Scaffold(
+     //backgroundColor:Colors.green[700],
+//      appBar:
+//        PreferredSize(child: AppBar(
+//          actions: [
+////                      FlatButton.icon(
+////            icon:Icon (Icons.person,size:20,),
+////            label: Text("Sign up"),
+////            onPressed: ()async {
+////                       widget.toggleView();
+////
+////
+////                      },
+////          )
 //
 //
-//                      },
-//          )
-
-
-          ],
-
-          title:Text("SocialApp"),backgroundColor:Colors.green[700],bottomOpacity: 0,elevation: 0,
-        ), preferredSize: Size.fromHeight(50),
-
-        ),
+//          ],
+//
+//          title:Text("SocialApp"),backgroundColor:Colors.green[700],bottomOpacity: 0,elevation: 0,
+//        ), preferredSize: Size.fromHeight(50),
+//
+//        ),
         body:
         
 //        Container(decoration: BoxDecoration(
@@ -74,7 +75,7 @@ final AuthService _auth= AuthService();
                 children: [
                   //SizedBox(height:10,),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(20, 30, 20, 10),
+                    padding: EdgeInsets.fromLTRB(20, 60, 20, 10),
                     child:
                     SizedBox(height:70,width: 60,child: Image.asset("images/app_icon.jpeg",)),
                   ),
@@ -105,6 +106,7 @@ final AuthService _auth= AuthService();
                                 SizedBox(height:20,),
                                 TextFormField(
                                   decoration:InputDecoration(
+                                    isDense:true,
                                       border:OutlineInputBorder(
                                         borderRadius: const BorderRadius.all(
                                           const Radius.circular(40.0),
@@ -126,6 +128,7 @@ final AuthService _auth= AuthService();
                                 SizedBox(height: 10,),
                                 TextFormField(
                                   decoration:InputDecoration(
+                                    isDense: true,
                                       border:OutlineInputBorder(
                                         borderRadius: const BorderRadius.all(
                                           const Radius.circular(40.0),

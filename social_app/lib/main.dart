@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
         //home: Wrapper(),
           routes: {
-            "/":(context)=>checking()
-                         //  '/':(context) => Wrapper(),"/users":(context)=>fireUsersS(),
+         //   "/":(context)=>checking()
+                           '/':(context) => Wrapper(),"/users":(context)=>fireUsersS(),
 
         //                       '/signup':(context) => SignUp(),
 

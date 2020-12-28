@@ -79,7 +79,16 @@ class _checkingState extends State<checking> {
                             padding: const EdgeInsets.fromLTRB(30, 50, 30, 0),
                             child: Container(
                               child: TextFormField(
-                                decoration: InputDecoration(labelText: 'First Name'),
+                                decoration: InputDecoration(labelText: 'First Name',
+                                  border:OutlineInputBorder(
+                                    borderRadius: const BorderRadius.all(
+                                      const Radius.circular(40.0),
+                                    ),
+                                  ),
+
+
+
+                                ),
                                 validator: (val)=> val.isEmpty ? "Empty name" : null,
 
                                 onChanged: (val){
@@ -95,7 +104,15 @@ class _checkingState extends State<checking> {
                             padding: const EdgeInsets.fromLTRB(10, 50, 30, 0),
                             child: Container(
                               child: TextFormField(
-                                  decoration: InputDecoration(labelText: 'SurName'),
+                                  decoration: InputDecoration(labelText: 'SurName',
+                                    border:OutlineInputBorder(
+                                      borderRadius: const BorderRadius.all(
+                                        const Radius.circular(40.0),
+                                      ),
+                                    ),
+
+
+                                  ),
                                   validator: (val)=> val.isEmpty ? "Empty name" : null,
                                   onChanged: (val){
                                     setState(() {
@@ -110,7 +127,15 @@ class _checkingState extends State<checking> {
                     padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
                     child: Container(
                       child: TextFormField(
-                          decoration: InputDecoration(labelText: 'Enter Your Email'),
+                          decoration: InputDecoration(labelText: 'Enter Your Email',
+                            border:OutlineInputBorder(
+                              borderRadius: const BorderRadius.all(
+                                const Radius.circular(40.0),
+                              ),
+                            ),
+
+
+                          ),
                           validator: (val)=> val.isEmpty ? "Empty email" : null,
                           onChanged: (val){
                             setState(() {
@@ -123,7 +148,12 @@ class _checkingState extends State<checking> {
                     padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
                     child: Container(
                       child: TextFormField(
-                        decoration: InputDecoration(labelText: 'Enter Password'),
+                        decoration: InputDecoration(labelText: 'Enter Password',
+                          border:OutlineInputBorder(
+                            borderRadius: const BorderRadius.all(
+                              const Radius.circular(40.0),
+                            ),
+                          ),),
                         validator: (val)=> val.length < 6 ? "pass is of 6 characters" : null,
                         obscureText: true,
                         onChanged: (val){
@@ -139,7 +169,12 @@ class _checkingState extends State<checking> {
                     padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
                     child: Container(
                       child: TextFormField(
-                        decoration: InputDecoration(labelText: 'Confirm Password'),
+                        decoration: InputDecoration(labelText: 'Confirm Password',
+                          border:OutlineInputBorder(
+                            borderRadius: const BorderRadius.all(
+                              const Radius.circular(40.0),
+                            ),
+                          ),),
                         validator: (val)=> val != password ? "wrong password" : null,
                         obscureText: true,
                         onChanged: (val){
@@ -340,7 +375,7 @@ class _checkingState extends State<checking> {
                 ]),
               ),
 
-              
+
             )
             ],
           )
