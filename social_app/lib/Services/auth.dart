@@ -100,6 +100,9 @@ class AuthService{
   //signout
   Future signOut() async{
     try{
+      SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+      sharedPreferences.clear();
+
       return await _auth.signOut();
     }catch(e){
       print(e.toString());

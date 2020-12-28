@@ -33,26 +33,27 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return loading ? Loading(): Scaffold(
-      appBar: AppBar(
-        title: Text("Social App"),
-        backgroundColor: Colors.blue,
-        actions: <Widget>[
-          FlatButton.icon(
-            icon:Icon (Icons.person),
-            label: Text("Sign in"),
+      appBar:
+      PreferredSize(child: AppBar(
+        actions: [FlatButton.icon(
+            icon:Icon (Icons.person,size:20,),
+            label: Text("Sign In"),
             onPressed: ()async {
-                        widget.toggleView();
-                    
-                        
+                       widget.toggleView();
+
+
                       },
           )
         ],
+
+        title:Text("SocialMediaApp"),backgroundColor:Colors.green[700],bottomOpacity: 0,elevation: 0,
+      ), preferredSize: Size.fromHeight(50),
       ),
-      backgroundColor: Colors.grey[400],
       body:
          ListView (
-            children:[ Form(
-        key:_formkey,
+            children:[
+              Form(
+               key:_formkey,
                 child: Column(children: [
                  Container(
               child: Row(children: [
@@ -321,6 +322,14 @@ class _SignUpState extends State<SignUp> {
 
         ]),
       ),
+              //Copy till here///
+
+
+
+
+
+
+
           ]),
     );
   }
