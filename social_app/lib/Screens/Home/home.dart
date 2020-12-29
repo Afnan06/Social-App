@@ -6,61 +6,70 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final AuthService
+  _auth=AuthService();
 
-  final AuthService _auth=AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Social App"),
-        backgroundColor: Colors.black45,
-        actions: <Widget>[
-          FlatButton.icon(
-            icon:Icon (Icons.person),
-            label: Text("Sign out"),
-            onPressed: ()async {
-                        await _auth.signOut();
-                    
-                        
-                      },
-          )
-        ],
-      ),
-      backgroundColor: Colors.grey[400],
-      body: Column(
-        children: [
-          
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-            child: Center(
-              child: Container(
-                  child: RaisedButton(
-                      onPressed: () {},
-                      textColor: Colors.white,
-                      padding: const EdgeInsets.all(0.0),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: <Color>[
-                              Color(0xFF0D47A1),
-                              Color(0xFF1976D2),
-                              Color(0xFF42A5F5),
-                            ],
-                          ),
-                        ),
-                        padding: const EdgeInsets.all(10.0),
-                        child: const Text('Gradient Button',
-                            style: TextStyle(fontSize: 20)),
-                      ))),
-            ),
-          ),
-          RaisedButton.icon(onPressed: (){
+        appBar: PreferredSize(
+        child: AppBar(
+          actions: [
+            FlatButton.icon(onPressed:()async{await _auth.signOut();} , icon:Icon(Icons.person), label:Text("signout") )
+          ],
+
+
+
+        title: Text("Home"),
+    backgroundColor: Colors.green[700],
+    bottomOpacity: 0,
+    elevation: 0,
+    ),
+    preferredSize: Size.fromHeight(50)),
+    backgroundColor: Colors.green[700],
+    body: Container(width: double.infinity,
+    decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+    topLeft: Radius.circular(20),
+    topRight: Radius.circular(20),
+    )),
+    child:Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(100, 380, 10, 5),
+          child: FloatingActionButton.extended(onPressed: (){
             Navigator.pushNamed(context, "/users");
-           // Navigator.push(context, "/users");
-          }, icon: Icon(Icons.search), label: Text("chat with users"))
-         
-        ],
-      ),
+          }
+          ,icon:Icon(Icons.chat) ,label:Text("view users"),backgroundColor: Colors.green[700],
+          ),
+        )
+      ],
+    ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    )
+
+
     );
   }
 }

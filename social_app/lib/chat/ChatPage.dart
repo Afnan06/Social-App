@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_bubble/bubble_type.dart';
+import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_1.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_chat_bubble/chat_bubble.dart';
 
 class ChatPage extends StatefulWidget {
   final docu;
@@ -47,54 +50,96 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("chat"),
-      ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('Messages')
-            .doc(groupChatId)
-            .collection(groupChatId)
-            .orderBy('timestamp', descending: true)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData && snapshot.data != null) {
-            return Column(
-              children: <Widget>[
-                Expanded(
-                    child: ListView.builder(
-                      controller: scrollController,
-                      itemBuilder: (listContext, index) =>
-                          buildItem(snapshot.data.docs[index]),
-                      itemCount: snapshot.data.docs.length,
-                      reverse: true,
-                    )),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: TextField(
-                        controller: textEditingController,
+      appBar: PreferredSize(
+          child: AppBar(
+            title: Text("Chat"),
+            backgroundColor: Colors.green[700],
+            bottomOpacity: 0,
+            elevation: 0,
+          ),
+          preferredSize: Size.fromHeight(50)),
+      backgroundColor: Colors.green[700],
+//      appBar: AppBar(
+//        title: Text("chat"),
+//      ),
+      body:
+
+
+      Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            )),
+        child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('Messages')
+              .doc(groupChatId)
+              .collection(groupChatId)
+              .orderBy('timestamp', descending: true)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData && snapshot.data != null) {
+              return Column(
+                //crossAxisAlignment:CrossAxisAlignment.end,
+                children: <Widget>[
+                  Expanded(
+                      child: ListView.builder(
+                        controller: scrollController,
+                        itemBuilder: (listContext, index) =>
+                            buildItem(snapshot.data.docs[index]),
+                        itemCount: snapshot.data.docs.length,
+                        reverse: true,
+                      )),
+                  //SizedBox(height: 10,),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child:
+                    Container(
+                      decoration:BoxDecoration(
+                        borderRadius:BorderRadius.circular(30),
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: TextField(
+                          decoration:InputDecoration(
+
+                            suffixIcon: IconButton(icon:Icon(Icons.send),onPressed: (){sendMsg();},), border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.black,
+                                width: 5.0),
+                            borderRadius:BorderRadius.circular(20),
+                          ),
+
+                              ),
+
+                              controller: textEditingController,
+                            ),
+                          ),
+//                          IconButton(
+//                            icon: Icon(Icons.send),
+//                            onPressed: () => sendMsg(),
+//                          ),
+                        ],
                       ),
                     ),
-                    IconButton(
-                      icon: Icon(Icons.send),
-                      onPressed: () => sendMsg(),
-                    ),
-                  ],
-                ),
-              ],
-            );
-          } else {
-            return Center(
-                child: SizedBox(
-                  height: 36,
-                  width: 36,
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
                   ),
-                ));
-          }
-        },
+                ],
+              );
+            } else {
+              return Center(
+                  child: SizedBox(
+                    height: 36,
+                    width: 36,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                    ),
+                  ));
+            }
+          },
+        ),
       ),
     );
   }
@@ -124,6 +169,7 @@ class _ChatPageState extends State<ChatPage> {
 
       scrollController.animateTo(0.0,
           duration: Duration(milliseconds: 100), curve: Curves.bounceInOut);
+      textEditingController.text = '';
     } else {
       print('Please enter some text to send');
     }
@@ -133,20 +179,42 @@ class _ChatPageState extends State<ChatPage> {
     return Padding(
       padding: EdgeInsets.only(
           top: 8.0,
-          left: ((obj1['senderId'] == userID) ? 64 : 0),
-          right: ((obj1['senderId'] == userID) ? 0 : 64)),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-            color: ((obj1['senderId'] == userID)
-                ? Colors.grey
-                : Colors.greenAccent),
-            borderRadius: BorderRadius.circular(8.0)),
-        child: (obj1['type'] == 'text')
-            ? Text('${obj1['content']}')
-            : Image.network(obj1['content']),
+
+       //  left: ((obj1['senderId'] == userID) ? 120 : 0),
+         // right: ((obj1['senderId'] == userID) ? 0: 64),
       ),
-    );
+      child: 
+        ChatBubble(
+          clipper: ChatBubbleClipper1(type:(obj1['senderId']==userID) ?BubbleType.sendBubble:BubbleType.receiverBubble
+
+          ),alignment:(obj1['senderId']==userID) ?Alignment.topRight:Alignment.topLeft,
+          backGroundColor: (obj1['senderId']==userID)?Colors.green:Colors.grey,
+
+
+         child: Container(
+        // width: MediaQuery.of(context).size.width,
+//          height: 30,
+        // padding: const EdgeInsets.all(8.0),
+//          decoration: BoxDecoration(
+
+//              color: ((obj1['senderId'] == userID)
+//                  ? Colors.green
+//                  : Colors.grey),
+//           borderRadius:BorderRadius.only(
+//               topLeft:((obj1['senderId']!=userID)?Radius.circular(0):Radius.circular(25)),
+//               topRight: Radius.circular(25),
+//               bottomRight:((obj1['senderId']!=userID)?Radius.circular(25):Radius.circular(0)),
+//               bottomLeft: Radius.circular(25),
+//
+//           )
+             // borderRadius: BorderRadius.circular(8.0)
+
+        //  ),
+          child: (obj1['type'] == 'text')
+              ? Text('${obj1['content']}')
+              : Image.network(obj1['content']),
+
+        ),
+    ));
   }
 }

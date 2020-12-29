@@ -82,10 +82,13 @@ class AuthService{
   Future registerWithEmailAndPassword(String email, String password,String name, String gender, String dob,String country)async {
     try{
       UserCredential result =await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+
 
       //create a new id with used uid
       await DatabaseService(uid: result.user.uid).useUpdateData(name, email, password, dob,gender, country);
       SocialAppUsers.add(result);
+      sharedPreferences.setString("id", result.user.uid);
 
       print(result);
 
