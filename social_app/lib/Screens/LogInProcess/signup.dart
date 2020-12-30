@@ -162,7 +162,7 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ),),
                           validator: (val)=> val.isEmpty? "enter name" : null,
-                          obscureText: true,
+                         // obscureText: true,
                           onChanged: (val){
                             setState(() {
                               fname=val;
@@ -176,6 +176,7 @@ class _SignUpState extends State<SignUp> {
                       padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
                       child: Container(
                         child: TextFormField(
+
                           decoration: InputDecoration(labelText: 'Enter Last Name',isDense: true,prefixIcon:Icon(Icons.person
                           ,color:Colors.green,
                           ) ,
@@ -185,7 +186,7 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ),),
                           validator: (val)=> val.isEmpty? "enter" : null,
-                          obscureText: true,
+                        //  obscureText: true,
                           onChanged: (val){
                             setState(() {
                               lname=val;

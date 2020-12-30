@@ -65,7 +65,7 @@ class _ChatPageState extends State<ChatPage> {
       body:
 
 
-      Container(
+      Container(height: double.infinity,
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -106,11 +106,20 @@ class _ChatPageState extends State<ChatPage> {
                             child: TextField(
                           decoration:InputDecoration(
 
-                            suffixIcon: IconButton(icon:Icon(Icons.send),onPressed: (){sendMsg();},), border: OutlineInputBorder(
+//                            suffixIcon:
+//                            CircleAvatar(child: IconButton(icon:Icon(Icons.send),onPressed: (){sendMsg();},),
+//                              //backgroundColor:Colors.green[700],
+//
+//
+//                            ),
+                            border: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Colors.black,
                                 width: 5.0),
-                            borderRadius:BorderRadius.circular(20),
+
+
+
+                            borderRadius:BorderRadius.circular(60),
                           ),
 
                               ),
@@ -118,6 +127,16 @@ class _ChatPageState extends State<ChatPage> {
                               controller: textEditingController,
                             ),
                           ),
+                            SizedBox(width: 5,),
+                            CircleAvatar(child: IconButton(icon:Icon(Icons.send),onPressed: (){sendMsg();},),
+                             // backgroundColor:Colors.green[700],
+                             // foregroundColor: Colors.green,
+                              radius: 25,
+
+
+                            ),
+
+
 //                          IconButton(
 //                            icon: Icon(Icons.send),
 //                            onPressed: () => sendMsg(),
@@ -178,23 +197,27 @@ class _ChatPageState extends State<ChatPage> {
   buildItem(obj1) {
     return Padding(
       padding: EdgeInsets.only(
-          top: 8.0,
+          top: 14,bottom: 14,left:5,right: 5
 
        //  left: ((obj1['senderId'] == userID) ? 120 : 0),
          // right: ((obj1['senderId'] == userID) ? 0: 64),
       ),
       child: 
         ChatBubble(
-          clipper: ChatBubbleClipper1(type:(obj1['senderId']==userID) ?BubbleType.sendBubble:BubbleType.receiverBubble
+          clipper: ChatBubbleClipper1(nipHeight: 10,nipWidth: 10,
+              type:(obj1['senderId']==userID) ?BubbleType.sendBubble:BubbleType.receiverBubble
 
           ),alignment:(obj1['senderId']==userID) ?Alignment.topRight:Alignment.topLeft,
-          backGroundColor: (obj1['senderId']==userID)?Colors.green:Colors.grey,
+          backGroundColor: (obj1['senderId']==userID)?Colors.white:Colors.green,
 
 
          child: Container(
+           padding:EdgeInsets.only(left:5,right: 5)
+           ,
+
         // width: MediaQuery.of(context).size.width,
 //          height: 30,
-        // padding: const EdgeInsets.all(8.0),
+        //padding: const EdgeInsets.all(8.0),
 //          decoration: BoxDecoration(
 
 //              color: ((obj1['senderId'] == userID)
@@ -211,7 +234,8 @@ class _ChatPageState extends State<ChatPage> {
 
         //  ),
           child: (obj1['type'] == 'text')
-              ? Text('${obj1['content']}')
+              ? Text('${obj1['content']}',style:TextStyle(color:(obj1['senderId']==userID)?
+          Colors.black:Colors.white),)
               : Image.network(obj1['content']),
 
         ),

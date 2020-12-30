@@ -127,6 +127,7 @@ final AuthService _auth= AuthService();
                                 ),
                                 SizedBox(height: 10,),
                                 TextFormField(
+                                  obscureText: true,
                                   decoration:InputDecoration(
                                     isDense: true,
                                       border:OutlineInputBorder(
@@ -135,9 +136,11 @@ final AuthService _auth= AuthService();
                                         ),
                                       ),
                                       labelText:"Password",
+
                                       prefixIcon:Icon(
                                         Icons.lock,color:Colors.green,)
                                   ),
+
                                   validator:(val)=>val.isEmpty?"enter  password":null,
                                     onChanged: (val){
                                       setState(() {

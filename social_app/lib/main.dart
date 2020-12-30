@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
     return StreamProvider<USER>.value(
       value: AuthService().user,
         child: MaterialApp(
+          //color:Colors.white,
         //home: Wrapper(),
           routes: {
          //   "/":(context)=>checking()
