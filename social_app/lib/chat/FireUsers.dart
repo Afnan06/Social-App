@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_app/chat/ChatPage.dart';
 import 'package:social_app/Services/auth.dart';
 
+
 class fireUsersS extends StatefulWidget {
   @override
   _fireUsersSState createState() => _fireUsersSState();
@@ -25,13 +26,17 @@ class _fireUsersSState extends State<fireUsersS> {
 
   @override
   Widget build(BuildContext context) {
+    final AuthService
+    _auth=AuthService();
+
     return Scaffold(
         appBar: PreferredSize(
             child: AppBar(
-              title: Text("SocialApp"),
+              title: Text("HOME"),
               backgroundColor: Colors.green[700],
               bottomOpacity: 0,
               elevation: 0,
+
             ),
             preferredSize: Size.fromHeight(50)),
         backgroundColor: Colors.green[700],
@@ -149,7 +154,7 @@ class _fireUsersSState extends State<fireUsersS> {
 
                                   Image.asset(
                                     "images/MSG.png",
-                                    width: 16,
+                                    width: 17,
                                     height: 22,
                                   ),
                                   //Image.asset("home/MSG.png",height: 20,width: 20,),

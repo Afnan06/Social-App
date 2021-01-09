@@ -60,6 +60,7 @@ flutter:
     - images/back.png
     - images/app_icon.jpeg
     - images/MSG.png
+    - images/logout.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

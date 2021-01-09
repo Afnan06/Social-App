@@ -27,6 +27,10 @@ class _SignUpState extends State<SignUp> {
   String error='';
   String confirmpassword;
   bool loading =false;
+  bool showpassword=true;
+  bool obscure=false;
+  bool showpassword1=true;
+  bool obscure1=false;
 
 
 
@@ -222,8 +226,22 @@ class _SignUpState extends State<SignUp> {
                       padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
                       child: Container(
                         child: TextFormField(
+                          obscureText: obscure,
+
                           decoration: InputDecoration(labelText: 'Enter Password',isDense: true,
                             prefixIcon:Icon(Icons.lock,color:Colors.green,),
+                            suffixIcon:showpassword?IconButton(icon: Icon(Icons.visibility), onPressed: (){
+                                setState(() {
+                            showpassword=false;
+                               obscure=true;
+
+                                  });
+                             }):IconButton(icon:Icon(Icons.visibility_off),onPressed: (){
+                              setState(() {
+                            showpassword=true;
+                                obscure=false;
+                                      });
+                                     },),
 
                             border:OutlineInputBorder(
                               borderRadius: const BorderRadius.all(
@@ -231,7 +249,7 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ),),
                           validator: (val)=> val.length < 6 ? "pass is of 6 characters" : null,
-                          obscureText: true,
+                          //obscureText: obscure,
                           onChanged: (val){
                             setState(() {
                               password=val;
@@ -245,15 +263,30 @@ class _SignUpState extends State<SignUp> {
                       padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
                       child: Container(
                         child: TextFormField(
+
                           decoration: InputDecoration(labelText: 'Confirm Password',isDense: true,
                             prefixIcon:Icon(Icons.lock,color:Colors.green,),
+    suffixIcon:showpassword1?IconButton(icon: Icon(Icons.visibility), onPressed: (){
+    setState(() {
+    showpassword1=false;
+    obscure1=true;
+
+    });
+    }):IconButton(icon:Icon(Icons.visibility_off),onPressed: (){
+    setState(() {
+    showpassword1=true;
+    obscure1=false;
+    });
+    },),
+
+
                             border:OutlineInputBorder(
                               borderRadius: const BorderRadius.all(
                                 const Radius.circular(40.0),
                               ),
                             ),),
-                          validator: (val)=> val != password ? "wrong password" : null,
-                          obscureText: true,
+                          validator: (val)=> val != password ? "Wrong password" : null,
+                          obscureText: obscure1,
                           onChanged: (val){
                             setState(() {
                               confirmpassword=val;
@@ -471,11 +504,10 @@ class _SignUpState extends State<SignUp> {
                           ),)
                         ,),
 
-
                     ) ,SizedBox(height: 10),
                     Text(
                       error,
-                      style: TextStyle(color: Colors.red, fontSize: 14.0),
+                      style: TextStyle(color: Colors.red[700], fontSize: 14.0),
 
                     ),
                     Text(

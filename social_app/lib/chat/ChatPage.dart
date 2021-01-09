@@ -67,7 +67,7 @@ class _ChatPageState extends State<ChatPage> {
 
       Container(height: double.infinity,
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Color.fromRGBO(246, 246,246, 1),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
@@ -105,6 +105,7 @@ class _ChatPageState extends State<ChatPage> {
                           Expanded(
                             child: TextField(
                           decoration:InputDecoration(
+                            hintText:"Type your message",
 
 //                            suffixIcon:
 //                            CircleAvatar(child: IconButton(icon:Icon(Icons.send),onPressed: (){sendMsg();},),
@@ -112,15 +113,21 @@ class _ChatPageState extends State<ChatPage> {
 //
 //
 //                            ),
-                            border: OutlineInputBorder(
+                            enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Colors.black,
-                                width: 5.0),
-
-
-
+                               // width: 5.0
+                            ),
                             borderRadius:BorderRadius.circular(60),
                           ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color:Colors.green,
+                               // width: 5.0
+                              ),
+                              borderRadius:BorderRadius.circular(60),
+                            )
+
 
                               ),
 
@@ -128,8 +135,8 @@ class _ChatPageState extends State<ChatPage> {
                             ),
                           ),
                             SizedBox(width: 5,),
-                            CircleAvatar(child: IconButton(icon:Icon(Icons.send),onPressed: (){sendMsg();},),
-                             // backgroundColor:Colors.green[700],
+                            CircleAvatar(child: IconButton(icon:Icon(Icons.send,color: Colors.white,),onPressed: (){sendMsg();},),
+                             backgroundColor:Colors.green[700],
                              // foregroundColor: Colors.green,
                               radius: 25,
 

@@ -21,6 +21,8 @@ final AuthService _auth= AuthService();
  String password;
  String error='';
  bool loading =false;
+ bool showpassword=true;
+ bool obscure=false;
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +129,7 @@ final AuthService _auth= AuthService();
                                 ),
                                 SizedBox(height: 10,),
                                 TextFormField(
-                                  obscureText: true,
+                                  obscureText: obscure,
                                   decoration:InputDecoration(
                                     isDense: true,
                                       border:OutlineInputBorder(
@@ -136,6 +138,19 @@ final AuthService _auth= AuthService();
                                         ),
                                       ),
                                       labelText:"Password",
+                                      suffixIcon:showpassword?IconButton(icon: Icon(Icons.visibility), onPressed: (){
+                                              setState(() {
+                                                showpassword=false;
+                                                obscure=true;
+
+                                              });
+                                           }):IconButton(icon:Icon(Icons.visibility_off),onPressed: (){
+                                             setState(() {
+                                               showpassword=true;
+                                               obscure=false;
+                                             });
+                                             },)
+        ,
 
                                       prefixIcon:Icon(
                                         Icons.lock,color:Colors.green,)
@@ -184,6 +199,9 @@ final AuthService _auth= AuthService();
                                 SizedBox(
                                   height:10,
                                 ),
+                                   Text(error,style:TextStyle(color:Colors.red[700]),),
+                                   SizedBox(height: 10,),
+
 
 
                                    Text("if you dont have an account?"),

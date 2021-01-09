@@ -4,6 +4,7 @@ import 'package:social_app/Models/user.dart';
 import 'package:social_app/Screens/LogInProcess/authenticate.dart';
 import 'package:social_app/Screens/LogInProcess/login.dart';
 import 'package:social_app/Screens/LogInProcess/signup.dart';
+import 'package:social_app/chat/FireUsers.dart';
 
 import 'Home/home.dart';
 class Wrapper extends StatefulWidget {
