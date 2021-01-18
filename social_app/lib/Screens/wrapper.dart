@@ -7,6 +7,7 @@ import 'package:social_app/Screens/LogInProcess/signup.dart';
 import 'package:social_app/chat/FireUsers.dart';
 
 import 'Home/home.dart';
+import 'LogInProcess/search.dart';
 class Wrapper extends StatefulWidget {
   @override
   _WrapperState createState() => _WrapperState();
@@ -21,7 +22,8 @@ class _WrapperState extends State<Wrapper> {
     if (user==null){
     return Authenticate();
     }else{
-      return Home();
+      //return Home();
+      return Search();
     }
 
   }

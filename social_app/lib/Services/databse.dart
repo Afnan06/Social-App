@@ -10,24 +10,45 @@ class DatabaseService{
   //every user has unique id
   //document id
 
-  final CollectionReference userCredentials= FirebaseFirestore.instance.collection('UserCredentials');
+  final CollectionReference userCredentials= Firestore.instance.collection('UserCredentials');
+setSearchParam(String name) {
+  List<String> caseSearchList = List();
+  String temp = "";
+  for (int i = 0; i < name.length; i++) {
+    temp = temp + name[i];
+    caseSearchList.add(temp);
+  }
+  return caseSearchList;
+}
+
+
 
   //1st signup and second when updating
   Future useUpdateData(String name,String email,String password,String dob,String gender,String country)async{
     //find id
     return await userCredentials.doc(uid).set(
       {
+
+        "caseSearch": setSearchParam(name),
         'name':name,
         'email':email,
         'password':password,
         'dob':dob,
         'gender':gender,
-        'country':country,
-        'id':uid,
-
+        'country':country
 
 
       }
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
