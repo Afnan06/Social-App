@@ -82,7 +82,7 @@ class AuthService{
 
 
 
-  Future registerWithEmailAndPassword(String email, String password,String name, String gender, String dob,String country,File pic)async {
+  Future registerWithEmailAndPassword(String email, String password,String name, String gender, String dob,String country,String pic)async {
     try{
       UserCredential result =await _auth.createUserWithEmailAndPassword(email: email, password: password);
       SharedPreferences sharedPreferences=await SharedPreferences.getInstance();

@@ -12,9 +12,24 @@ class SignUp extends StatefulWidget {
   SignUp({this.toggleView});
   @override
   _SignUpState createState() => _SignUpState();
+
 }
 
 class _SignUpState extends State<SignUp> {
+//  File imageFile;
+//  _getFromGallery() async {
+//    PickedFile pickedFile = await ImagePicker().getImage(
+//      source: ImageSource.gallery,
+////        maxWidth: 1800,
+////        maxHeight: 1800,
+//    );
+//    if (pickedFile != null) {
+//      setState(() {
+//        imageFile = File(pickedFile.path);
+//      });
+//    }
+//  }
+
   final AuthService _auth= AuthService();
   final _formkey= GlobalKey<FormState>();
   int dayValue = 1;
@@ -36,12 +51,19 @@ class _SignUpState extends State<SignUp> {
   bool showpassword1=true;
   bool obscure1=false;
   File imageFile;
-  File pic;
+  String pic;
+  //File pic;
 
+  @override
+  void initState() {
+    super.initState();
+    //foo_bar(); // first call super constructor then foo_bar that contains setState() call
+  }
 
 
   @override
   Widget build(BuildContext context) {
+//    File imageFile;
     _getFromGallery() async {
       PickedFile pickedFile = await ImagePicker().getImage(
         source: ImageSource.gallery,
@@ -49,11 +71,33 @@ class _SignUpState extends State<SignUp> {
 //        maxHeight: 1800,
       );
       if (pickedFile != null) {
-        setState(() {
+        if (mounted){
+                  setState(() {
           imageFile = File(pickedFile.path);
+          pic=imageFile.path;
+          //imageFile.open(pic)
         });
+
+        }
+//        setState(() {
+//          imageFile = File(pickedFile.path);
+//        });
       }
     }
+
+//    File imageFile;
+//    _getFromGallery() async {
+//      PickedFile pickedFile = await ImagePicker().getImage(
+//        source: ImageSource.gallery,
+////        maxWidth: 1800,
+////        maxHeight: 1800,
+//      );
+//      if (pickedFile != null) {
+//        setState(() {
+//          imageFile = File(pickedFile.path);
+//        });
+//      }
+//    }
 
 
 
@@ -120,7 +164,7 @@ class _SignUpState extends State<SignUp> {
                       child:
                       GestureDetector(
                         onTap: (){
-                          //pic=imageFile;
+                           //pic=imageFile;
                           _getFromGallery();
                         },
 
@@ -446,7 +490,7 @@ class _SignUpState extends State<SignUp> {
                             });
                             print(monthValue );
                             String name=fname+lname;
-                            pic=imageFile;
+                            //pic=imageFile;
                             String dob= dayValue.toString() +'-' +monthValue +'-'+  yearValue.toString();
                             dynamic result= await _auth.registerWithEmailAndPassword(email, password,name,gender,dob,country ,pic );
                             if (result==null){
