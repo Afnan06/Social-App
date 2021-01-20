@@ -3,6 +3,9 @@ import 'package:social_app/Models/user.dart';
 import 'package:social_app/Services/databse.dart';
 import 'package:social_app/chat/FireUsers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+
 
 class AuthService{
    final FirebaseAuth _auth= FirebaseAuth.instance;
@@ -79,14 +82,14 @@ class AuthService{
 
 
 
-  Future registerWithEmailAndPassword(String email, String password,String name, String gender, String dob,String country)async {
+  Future registerWithEmailAndPassword(String email, String password,String name, String gender, String dob,String country,File pic)async {
     try{
       UserCredential result =await _auth.createUserWithEmailAndPassword(email: email, password: password);
       SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
 
 
       //create a new id with used uid
-      await DatabaseService(uid: result.user.uid).useUpdateData(name, email, password, dob,gender, country);
+      await DatabaseService(uid: result.user.uid).useUpdateData(name, email, password, dob,gender, country,pic);
       SocialAppUsers.add(result);
       sharedPreferences.setString("id", result.user.uid);
 

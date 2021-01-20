@@ -1,5 +1,7 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:social_app/Screens/LogInProcess/login.dart';
 
@@ -8,13 +10,21 @@ import 'package:social_app/Screens/wrapper.dart';
 import 'package:social_app/Services/auth.dart';
 //import 'package:social_app/chat/ChatScreen.dart';
 import 'package:social_app/chat/FireUsers.dart';
+import 'package:e3kit/e3kit.dart';
 
 import 'Models/user.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(
+//    DevicePreview(builder:
+//     (context)=>MyApp()
+//    )
+
+      MyApp()
+  )
+  ;
 }
 
 class MyApp extends StatelessWidget {
@@ -23,21 +33,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider<USER>.value(
       value: AuthService().user,
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          //color:Colors.white,
-        //home: Wrapper(),
-          routes: {
-         //   "/":(context)=>checking()
-                           '/':(context) => Wrapper(),"/users":(context)=>fireUsersS(),
+        child:
+        ScreenUtilInit(
+          //designSize:MediaQuery.of(context).size,
 
-        //                       '/signup':(context) => SignUp(),
+          child: MaterialApp(
+            //builder:DevicePreview.appBuilder,
+            debugShowCheckedModeBanner: false,
+            //color:Colors.white,
+          //home: Wrapper(),
+            routes: {
+           //   "/":(context)=>checking()
+                             '/':(context) => Wrapper(),"/users":(context)=>fireUsersS(),
 
-   
-        //                       // '/location':(context) => Choose_Location(),
-                            },
-        
+          //                       '/signup':(context) => SignUp(),
+
+
+          //                       // '/location':(context) => Choose_Location(),
+                              },
+
       ),
+        ),
     );
   }
 }

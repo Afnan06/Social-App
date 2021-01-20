@@ -35,6 +35,13 @@ dependencies:
   flutter_spinkit: ^4.1.2+1
   shared_preferences: ^0.5.12+4
   flutter_chat_bubble: ^1.0.2
+  flutter_screenutil: ^4.0.2+3
+  hexcolor: ^1.0.6
+  device_preview: ^0.5.5
+  image_picker: ^0.6.7+21
+  e3kit:
+    git:
+      url: git://github.com/cardoso/virgil-e3kit-flutter.git
 
 
 
@@ -61,6 +68,9 @@ flutter:
     - images/app_icon.jpeg
     - images/MSG.png
     - images/logout.png
+    - images/camera1.png
+    - images/
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

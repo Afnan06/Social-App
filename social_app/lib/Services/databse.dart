@@ -1,4 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+
 
 class DatabaseService{
   final String uid;
@@ -24,7 +27,7 @@ setSearchParam(String name) {
 
 
   //1st signup and second when updating
-  Future useUpdateData(String name,String email,String password,String dob,String gender,String country)async{
+  Future useUpdateData(String name,String email,String password,String dob,String gender,String country,File pic)async{
     //find id
     return await userCredentials.doc(uid).set(
       {
@@ -35,7 +38,8 @@ setSearchParam(String name) {
         'password':password,
         'dob':dob,
         'gender':gender,
-        'country':country
+        'country':country,
+         'pic':pic
 
 
       }
