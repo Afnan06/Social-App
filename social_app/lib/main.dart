@@ -22,9 +22,7 @@ void main() async {
 //     (context)=>MyApp()
 //    )
 
-      MyApp()
-  )
-  ;
+      MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -33,28 +31,61 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider<USER>.value(
       value: AuthService().user,
-        child:
-        ScreenUtilInit(
-          //designSize:MediaQuery.of(context).size,
+      child: ScreenUtilInit(
+        //designSize:MediaQuery.of(context).size,
 
-          child: MaterialApp(
-            //builder:DevicePreview.appBuilder,
-            debugShowCheckedModeBanner: false,
-            //color:Colors.white,
+        child: MaterialApp(
+          //builder:DevicePreview.appBuilder,
+          debugShowCheckedModeBanner: false,
+          //color:Colors.white,
           //home: Wrapper(),
-            routes: {
-           //   "/":(context)=>checking()
-                             '/':(context) => Wrapper(),"/users":(context)=>fireUsersS(),
+          title: 'Social App',
 
-          //                       '/signup':(context) => SignUp(),
+          theme: ThemeData(
+            scaffoldBackgroundColor: Colors.black,
+            dialogBackgroundColor: Colors.black,
+            primarySwatch: Colors.grey,
+            cardColor: Colors.white70,
+            accentColor: Colors.black,
+          ),
+          routes: {
+            //   "/":(context)=>checking()
+            '/': (context) => Wrapper(), "/users": (context) => fireUsersS(),
 
+            //                       '/signup':(context) => SignUp(),
 
-          //                       // '/location':(context) => Choose_Location(),
-                              },
-
-      ),
+            //                       // '/location':(context) => Choose_Location(),
+          },
         ),
+      ),
     );
   }
 }
 
+// import 'package:social_app/pages/HomePage.dart';
+
+// import 'package:flutter/material.dart';
+
+// void main() {
+//   WidgetsFlutterBinding.ensureInitialized();
+
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+// return MaterialApp(
+//   title: 'Social App',
+//   debugShowCheckedModeBanner: false,
+//   theme: ThemeData(
+//     scaffoldBackgroundColor: Colors.black,
+//     dialogBackgroundColor: Colors.black,
+//     primarySwatch: Colors.grey,
+//     cardColor: Colors.white70,
+//     accentColor: Colors.black,
+//   ),
+//       home: HomePage(),
+//     );
+//   }
+// }

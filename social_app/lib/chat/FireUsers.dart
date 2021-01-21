@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_app/chat/ChatPage.dart';
 import 'package:social_app/Services/auth.dart';
 
-
 class fireUsersS extends StatefulWidget {
   @override
   _fireUsersSState createState() => _fireUsersSState();
@@ -26,8 +25,7 @@ class _fireUsersSState extends State<fireUsersS> {
 
   @override
   Widget build(BuildContext context) {
-    final AuthService
-    _auth=AuthService();
+    final AuthService _auth = AuthService();
 
     return Scaffold(
         appBar: PreferredSize(
@@ -36,7 +34,6 @@ class _fireUsersSState extends State<fireUsersS> {
               backgroundColor: Colors.green[700],
               bottomOpacity: 0,
               elevation: 0,
-
             ),
             preferredSize: Size.fromHeight(50)),
         backgroundColor: Colors.green[700],
@@ -46,8 +43,7 @@ class _fireUsersSState extends State<fireUsersS> {
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
                 topRight: Radius.circular(20),
-              )
-          ),
+              )),
           child: StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
                 .collection('UserCredentials')
@@ -134,10 +130,11 @@ class _fireUsersSState extends State<fireUsersS> {
                             Spacer(),
                             RaisedButton(
                               onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage(docu: obj1)));
-
-
-
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ChatPage(docu: obj1)));
                               },
                               color: Colors.white,
                               child: Row(
@@ -175,7 +172,7 @@ class _fireUsersSState extends State<fireUsersS> {
                 ),
               ));
     } else {
-     return  Container();
+      return Container();
     }
   }
 }
