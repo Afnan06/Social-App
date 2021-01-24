@@ -8,12 +8,14 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 final firebase_storage.Reference storageReference =
     firebase_storage.FirebaseStorage.instance.ref().child("Post Pictures");
 // final StorageReference storageReference =
 //     FirebaseStorage.instance.ref().child("Post Pictures");
 final postsReference = FirebaseFirestore.instance.collection("posts");
+final usersReference = FirebaseFirestore.instance.collection("Profile Users");
 final DateTime timestamp = DateTime.now();
 
 class HomePage extends StatefulWidget {
@@ -22,6 +24,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  User currentUser = FirebaseAuth.instance.currentUser;
+  // final uid = user.uid;
+
+  // final FirebaseAuth auth = FirebaseAuth.instance;
+
+  // final User currentUser =  auth.currentUser;
+
+  // final uid = user.uid;
+  // here you write the codes to input the data into firestore
+
   PageController pageController;
   int getPageIndex = 0;
 
@@ -57,7 +69,10 @@ class _HomePageState extends State<HomePage> {
           SearchPage(),
           UploadPage(),
           NotificationsPage(),
-          ProfilePage(),
+          // ProfilePage(),
+          ProfilePage(
+            userProfileId: currentUser.uid,
+          ),
         ],
         controller: pageController,
         onPageChanged: whenPageChanges,

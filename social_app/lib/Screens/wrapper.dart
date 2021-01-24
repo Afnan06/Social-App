@@ -6,6 +6,7 @@ import 'package:social_app/Screens/LogInProcess/login.dart';
 import 'package:social_app/Screens/LogInProcess/signup.dart';
 import 'package:social_app/chat/FireUsers.dart';
 import 'package:social_app/pages/HomePage.dart';
+import 'package:social_app/pages/ProfileSignUp.dart';
 
 import 'Home/home.dart';
 import 'LogInProcess/search.dart';
@@ -26,7 +27,8 @@ class _WrapperState extends State<Wrapper> {
     } else {
       //return Home();
       // return Search();
-      return HomePage();
+      // return HomePage();
+      return ProfileSignUp();
     }
   }
 }

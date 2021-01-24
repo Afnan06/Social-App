@@ -1,5 +1,6 @@
 // import 'dart:html';
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_app/pages/HomePage.dart';
 import 'package:social_app/widgets/ProgressWidget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -27,6 +28,7 @@ class UploadPage extends StatefulWidget {
 
   //   userId = sharedPreferences.getString('id');
   // }
+
   // final User gCurrentUser;
 
   // UploadPage({this.gCurrentUser});
@@ -37,6 +39,8 @@ class UploadPage extends StatefulWidget {
 
 class _UploadPageState extends State<UploadPage>
     with AutomaticKeepAliveClientMixin<UploadPage> {
+  User currentUser = FirebaseAuth.instance.currentUser;
+
   @override
   void initState() {
     getUserId();
@@ -189,7 +193,7 @@ class _UploadPageState extends State<UploadPage>
     final path = tDirectory.path;
     ImD.Image mImageFile = ImD.decodeImage(file.readAsBytesSync());
     final compressedImageFile = File('$path/imag_$postId.jpg')
-      ..writeAsBytesSync(ImD.encodeJpg(mImageFile, quality: 90));
+      ..writeAsBytesSync(ImD.encodeJpg(mImageFile, quality: 60));
     setState(() {
       file = compressedImageFile;
     });
@@ -322,7 +326,7 @@ class _UploadPageState extends State<UploadPage>
             leading: CircleAvatar(
               backgroundImage:
 
-                  // CachedNetworkImageProvider(widget.gCurrentUser.url),
+                  // CachedNetworkImageProvider(currentUser),
                   AssetImage('assets/images/girl.jpeg'),
             ),
             title: Container(

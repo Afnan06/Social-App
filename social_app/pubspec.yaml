@@ -49,7 +49,8 @@ dependencies:
   uuid: ^2.0.0
   firebase_storage: ^7.0.0
   image: ^2.0.7
-  cached_network_image:
+  # cached_network_image:
+  cached_network_image: ^2.5.0  
   e3kit:
     git:
       url: git://github.com/cardoso/virgil-e3kit-flutter.git
