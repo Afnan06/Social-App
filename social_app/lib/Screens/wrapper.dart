@@ -24,7 +24,7 @@ class _WrapperState extends State<Wrapper> {
     if (user == null) {
       return Authenticate();
     } else {
-      return Search();
+      return ProfileSignUp();
     }
   }
 }

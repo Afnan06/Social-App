@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:social_app/Screens/LogInProcess/login.dart';
+import 'package:social_app/Screens/LogInProcess/search.dart';
 
 import 'package:social_app/Screens/LogInProcess/signup.dart';
 import 'package:social_app/Screens/wrapper.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
           ),
           routes: {
             //   "/":(context)=>checking()
-            '/': (context) => Wrapper(), "/users": (context) => fireUsersS(),"profilepage":(context)=>ProfilePage()
+            '/': (context) => Wrapper(), "/users": (context) => fireUsersS(),"profilepage":(context)=>ProfilePage(),"/search":(context)=>Search()
 
             //                       '/signup':(context) => SignUp(),
 

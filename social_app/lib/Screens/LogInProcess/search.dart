@@ -308,10 +308,7 @@ class _SearchState extends State<Search> {
                 //  label:Text("signout",style:TextStyle(color:Colors.white),)
                 //)
               ],
-
-
-
-              title: Text("Search"),
+              title: Text("Search",style:TextStyle(color:Colors.white),),
               backgroundColor: Colors.green[700],
               bottomOpacity: 0,
               elevation: 0,
@@ -423,7 +420,7 @@ class _SearchState extends State<Search> {
                       //itemCount: documentList.length,
                     );
                   }
-                  return Text("empty");
+                  return Container( );
                 },
               ),
             ),

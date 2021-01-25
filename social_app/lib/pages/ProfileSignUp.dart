@@ -139,9 +139,15 @@ class _ProfileSignUpState extends State<ProfileSignUp> {
           appBar: PreferredSize(
                child: AppBar(
                       actions: [
-                        IconButton(icon:Icon(Icons.search_rounded),onPressed: (){
+                        IconButton(icon:Icon(Icons.mail_outline,color:Colors.white,), onPressed: (){
+                          Navigator.pushNamed(context, "/search");
+                        }
+
+
+                        ),
+                        IconButton(icon:Icon(Icons.search_rounded,color:Colors.white,),onPressed: (){
                          // Navigator.push(context, "/fireUsers");
-                          Navigator.pushNamed(context, "/users");
+                          Navigator.pushNamed(context, "/search");
                         },),
                             GestureDetector(
                                    onTap: ()async{
@@ -159,7 +165,7 @@ class _ProfileSignUpState extends State<ProfileSignUp> {
                                                     ),
                                                             )
                                                                ],
-                 title: Text("Home"),
+                 title: Text("Profile",style:TextStyle(color:Colors.white),),
             backgroundColor: Colors.green[700],
             bottomOpacity: 0,
             elevation: 0,

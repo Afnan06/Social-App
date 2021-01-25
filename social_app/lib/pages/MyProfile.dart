@@ -134,7 +134,7 @@ class _MyProfileState extends State<MyProfile> {
     ),
     preferredSize: Size.fromHeight(50)),
     backgroundColor: Colors.green[700],
-    body: Container(
+     body: Container(
       width: double.infinity,
     decoration: BoxDecoration(
     color: Colors.white,
