@@ -68,6 +68,8 @@ class _HomeState extends State<Home> {
     elevation: 0,
     ),
     preferredSize: Size.fromHeight(50)),
+
+
     backgroundColor: Colors.green[700],
 //    body: Container(width: double.infinity,
 //    decoration: BoxDecoration(

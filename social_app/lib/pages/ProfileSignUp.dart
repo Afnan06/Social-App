@@ -9,6 +9,8 @@ import 'package:social_app/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:social_app/Services/auth.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileSignUp extends StatefulWidget {
   @override
@@ -16,6 +18,22 @@ class ProfileSignUp extends StatefulWidget {
 }
 
 class _ProfileSignUpState extends State<ProfileSignUp> {
+  @override
+  void initState() {
+    getUserId();
+    super.initState();
+  }
+
+  String userId;
+  getUserId() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    userId = sharedPreferences.getString('id');
+  }
+
+
+
+
   final AuthService _auth = AuthService();
   final _formkey = GlobalKey<FormState>();
   ProfileUser currentUser;
@@ -27,11 +45,7 @@ class _ProfileSignUpState extends State<ProfileSignUp> {
 
   String pic;
 
-  @override
-  void initState() {
-    super.initState();
-    //foo_bar(); // first call super constructor then foo_bar that contains setState() call
-  }
+
 
   goToApp() {
     Navigator.push(
@@ -45,7 +59,8 @@ class _ProfileSignUpState extends State<ProfileSignUp> {
     if (!documentSnapshot.exists) {
       usersReference.doc(wowcurrentUser.uid).set({
         "id": wowcurrentUser.uid,
-        "pUrl": pic,
+        "pUrl": uploadPhoto(imageFile),
+
         "profileName": profileName,
         "bio": bio
       });
@@ -55,38 +70,103 @@ class _ProfileSignUpState extends State<ProfileSignUp> {
     }
     currentUser = ProfileUser.fromDocument(documentSnapshot);
   }
+  void Pic(String url){
+        FirebaseFirestore.instance.collection('UserCredentials').doc(userId).update({"pic":url
+    }
+    );
+
+
+  }
+
+  Future<String> uploadPhoto(imageFile) async {
+    firebase_storage.UploadTask mStorageUploadTask =
+    storageReference.child("profile_$profileName.jpg").putFile(imageFile);
+    String downloadUrl = await (await mStorageUploadTask).ref.getDownloadURL();
+    Pic(downloadUrl.toString());
+//    FirebaseFirestore.instance.collection('UserCredentials').doc(userId).update({"pic":downloadUrl.toString()
+//
+//    }
+//    );
+    return downloadUrl.toString();
+
+  }
+
+  _getFromGallery() async {
+    PickedFile pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+//        maxWidth: 1800,
+//        maxHeight: 1800,
+    );
+
+    if (pickedFile != null) {
+      //  if (mounted) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+        pic = imageFile.path;
+        //imageFile.open(pic)
+      });
+      // }
+
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
 //    File imageFile;
-    _getFromGallery() async {
-      PickedFile pickedFile = await ImagePicker().getImage(
-        source: ImageSource.gallery,
-//        maxWidth: 1800,
-//        maxHeight: 1800,
-      );
-
-      if (pickedFile != null) {
-        if (mounted) {
-          setState(() {
-            imageFile = File(pickedFile.path);
-            pic = imageFile.path;
-            //imageFile.open(pic)
-          });
-        }
-        // imageFile = File(
-        //     "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png");
-        // pic = imageFile.path;
-
-//        setState(() {
-//          imageFile = File(pickedFile.path);
-//        });
-      }
-    }
+//    _getFromGallery() async {
+//      PickedFile pickedFile = await ImagePicker().getImage(
+//        source: ImageSource.gallery,
+////        maxWidth: 1800,
+////        maxHeight: 1800,
+//      );
+//
+//      if (pickedFile != null) {
+//      //  if (mounted) {
+//          setState(() {
+//            imageFile = File(pickedFile.path);
+//            pic = imageFile.path;
+//            //imageFile.open(pic)
+//          });
+//       // }
+//
+//      }
+//    }
 
     return loading
         ? Loading()
         : Scaffold(
+      backgroundColor:Colors.green[700],
+          appBar: PreferredSize(
+               child: AppBar(
+                      actions: [
+                        IconButton(icon:Icon(Icons.search_rounded),onPressed: (){
+                         // Navigator.push(context, "/fireUsers");
+                          Navigator.pushNamed(context, "/users");
+                        },),
+                            GestureDetector(
+                                   onTap: ()async{
+                                        await _auth.signOut();
+                                              },
+                child:
+                             Padding(
+                  padding: EdgeInsets.fromLTRB(8, 15, 15, 8),
+                  //const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "Logout",style:TextStyle(
+                                               color:Colors.white
+                                             ),
+                                                     ),
+                                                    ),
+                                                            )
+                                                               ],
+                 title: Text("Home"),
+            backgroundColor: Colors.green[700],
+            bottomOpacity: 0,
+            elevation: 0,
+          ),
+          preferredSize: Size.fromHeight(50)
+          ),
+
             body: Stack(
               children: [
                 Container(
@@ -214,7 +294,10 @@ class _ProfileSignUpState extends State<ProfileSignUp> {
                                 shape: new RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30),
                                 ),
-                                onPressed: saveProfileUserInfoToFireStore,
+                                onPressed:()async{
+                                  saveProfileUserInfoToFireStore();
+                                 // uploadPhoto(imageFile);
+                                },
                                 color: Colors.green,
                                 child: Text(
                                   "SAVE INFO",

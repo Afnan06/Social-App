@@ -84,12 +84,13 @@ class AuthService {
 
       //create a new id with used uid
       await DatabaseService(uid: result.user.uid)
-          .useUpdateData(name, email, password, dob, gender, country, pic, bio);
+          .useUpdateData(name, email, password, dob, gender, country,  bio);
       //change
       // await DatabaseService(uid: result.user.uid)
       //     .usingUpdateData(name, email, password, dob, gender, country, pic, bio);
       SocialAppUsers.add(result);
       sharedPreferences.setString("id", result.user.uid);
+
 
       print(result);
 

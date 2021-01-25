@@ -100,23 +100,6 @@ class _SignUpState extends State<SignUp> {
     return loading
         ? Loading()
         : Scaffold(
-//      appBar:
-//      PreferredSize(child: AppBar(
-//        actions: [FlatButton.icon(
-//            icon:Icon (Icons.person,size:20,),
-//            label: Text("Sign In"),
-//            onPressed: ()async {
-//                       widget.toggleView();
-//
-//
-//                      },
-//          )
-//        ],
-//
-//        title:Text("SocialApp"),backgroundColor:Colors.green[700],bottomOpacity: 0,elevation: 0,
-//      ), preferredSize: Size.fromHeight(50),
-//      ),
-//      backgroundColor: Colors.green[700],
             body: Stack(
               children: [
                 Container(
@@ -133,44 +116,23 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                 ),
-//          Positioned(
-//            top:ScreenUtil().setSp(87),left:ScreenUtil().setSp(100),
-//            child: Image.asset("images/camera1.png",height: 50,),
-//          ),
                 ListView(
                   children: [
-                    Stack(children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: ScreenUtil().setSp(20)),
-                        //const EdgeInsets.all(8.0),
-                        child: Center(
-                          child: CircleAvatar(
-                              radius: 60,
-                              backgroundImage: (imageFile != null)
-                                  ? FileImage(
-                                      imageFile,
-                                    )
-                                  : AssetImage(
-                                      "images/boy.png",
-                                    )),
-                        ),
-                      ),
-                      Positioned(
-                          top: ScreenUtil().setSp(90),
-                          left: ScreenUtil().setSp(193),
-                          child: GestureDetector(
-                              onTap: () {
-                                //pic=imageFile;
-                                _getFromGallery();
-                              },
-                              child: Image.asset(
-                                "images/camera1.png",
-                                height: 45,
-                              )))
-                    ]),
-                    SizedBox(
-                      height: ScreenUtil().setSp(20),
+
+
+                    Align(
+                        alignment:Alignment.center,
+                        child:
+                        Padding(
+                            padding:EdgeInsets.only(
+                                top:ScreenUtil().setSp(130)
+                            ),
+                            child: SizedBox(height:ScreenUtil().setHeight(90),width:ScreenUtil().setWidth(100),child: Image.asset("images/app_icon.jpeg",))
+                        )
                     ),
+
+
+
 
                     Center(
                       child: Text(

@@ -13,14 +13,13 @@ import 'package:social_app/chat/FireUsers.dart';
 import 'package:e3kit/e3kit.dart';
 
 import 'Models/user.dart';
+import 'pages/ProfilePage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
-//    DevicePreview(builder:
-//     (context)=>MyApp()
-//    )
+
 
       MyApp());
 }
@@ -50,7 +49,7 @@ class MyApp extends StatelessWidget {
           ),
           routes: {
             //   "/":(context)=>checking()
-            '/': (context) => Wrapper(), "/users": (context) => fireUsersS(),
+            '/': (context) => Wrapper(), "/users": (context) => fireUsersS(),"profilepage":(context)=>ProfilePage()
 
             //                       '/signup':(context) => SignUp(),
 
@@ -62,30 +61,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// import 'package:social_app/pages/HomePage.dart';
-
-// import 'package:flutter/material.dart';
-
-// void main() {
-//   WidgetsFlutterBinding.ensureInitialized();
-
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-// return MaterialApp(
-//   title: 'Social App',
-//   debugShowCheckedModeBanner: false,
-//   theme: ThemeData(
-//     scaffoldBackgroundColor: Colors.black,
-//     dialogBackgroundColor: Colors.black,
-//     primarySwatch: Colors.grey,
-//     cardColor: Colors.white70,
-//     accentColor: Colors.black,
-//   ),
-//       home: HomePage(),
-//     );
-//   }
-// }

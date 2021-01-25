@@ -30,7 +30,7 @@ class DatabaseService {
 
   //1st signup and second when updating
   Future useUpdateData(String name, String email, String password, String dob,
-      String gender, String country, String imageFile, String bio) async {
+      String gender, String country,  String bio,) async {
     //find id
     return await userCredentials.doc(uid).set({
       "caseSearch": setSearchParam(name),
@@ -40,8 +40,9 @@ class DatabaseService {
       'dob': dob,
       'gender': gender,
       'country': country,
-      'pic': imageFile,
-      'bio': bio,
+       'bio': bio,
+       "id":uid,
+       "pic":null,
     });
   }
 

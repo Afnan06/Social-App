@@ -21,14 +21,10 @@ class _WrapperState extends State<Wrapper> {
   Widget build(BuildContext context) {
     final user = Provider.of<USER>(context);
     print(user);
-
     if (user == null) {
       return Authenticate();
     } else {
-      //return Home();
-      // return Search();
-      // return HomePage();
-      return ProfileSignUp();
+      return Search();
     }
   }
 }
