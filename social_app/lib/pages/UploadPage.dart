@@ -272,6 +272,7 @@ class _UploadPageState extends State<UploadPage>
 
   displayUploadFormScreen() {
     return Scaffold(
+     // backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.black,
         leading: IconButton(

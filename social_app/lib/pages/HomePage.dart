@@ -9,6 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:social_app/pages/mytimeline.dart';
 
 final firebase_storage.Reference storageReference =
     firebase_storage.FirebaseStorage.instance.ref().child("Post Pictures");
@@ -65,7 +66,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: PageView(
         children: <Widget>[
-          TimeLinePage(),
+          timeline(),
+          //TimeLinePage(),
          SearchPage(),
           UploadPage(),
           //NotificationsPage(),
@@ -81,9 +83,10 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: CupertinoTabBar(
         currentIndex: getPageIndex,
         onTap: onTapChangePage,
-        backgroundColor: Theme.of(context).accentColor,
-        activeColor: Colors.white,
-        inactiveColor: Colors.blueGrey,
+        backgroundColor:Colors.green[700],
+        //backgroundColor: Theme.of(context).accentColor,
+        activeColor: Colors.black,
+        inactiveColor: Colors.white,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home)),
           BottomNavigationBarItem(icon: Icon(Icons.search)),

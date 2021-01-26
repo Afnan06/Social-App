@@ -40,13 +40,28 @@ class _SearchPageState extends State<SearchPage> {
                                                     ),
                                                             )
                                                                ],
-                 title: Text("Profile",style:TextStyle(color:Colors.white),),
+                 title: Text("Search",style:TextStyle(color:Colors.white),),
             backgroundColor: Colors.green[700],
             bottomOpacity: 0,
             elevation: 0,
           ),
           preferredSize: Size.fromHeight(50)
-          ),);
+          ),
+      body:   Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30)),
+            image: DecorationImage(
+              fit: BoxFit.fill,
+              image: AssetImage("images/back.png"),
+            ),
+          ),),
+      backgroundColor: Colors.green[700],
+    );
     return Text('Search Page goes here.');
   }
 }

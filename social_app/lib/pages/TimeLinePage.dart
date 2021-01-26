@@ -128,6 +128,7 @@ setState(() {
   @override
   Widget build(context) {
     return loading ? Loading():Scaffold(
+      backgroundColor:Colors.green[700],
        appBar: PreferredSize(
                child: AppBar(
                       actions: [
@@ -157,7 +158,7 @@ setState(() {
                                                     ),
                                                             )
                                                                ],
-                 title: Text("Profile",style:TextStyle(color:Colors.white),),
+                 title: Text("Home",style:TextStyle(color:Colors.white),),
             backgroundColor: Colors.green[700],
             bottomOpacity: 0,
             elevation: 0,
@@ -166,9 +167,24 @@ setState(() {
           ),
       body:
       
-       Container(
-        child: 
-          GridView.count(
+
+           Container(
+             padding:EdgeInsets.only(left: 10,right: 10,top: 10,),
+             width: MediaQuery.of(context).size.width,
+             height: MediaQuery.of(context).size.height,
+             decoration: BoxDecoration(
+               color: Colors.white,
+               borderRadius: BorderRadius.only(
+                   topLeft: Radius.circular(30),
+                   topRight: Radius.circular(30)),
+//               image: DecorationImage(
+//                 fit: BoxFit.fill,
+//                 image: AssetImage("images/back.png"),
+//               ),
+            ),
+
+            child:
+               GridView.count(
           // Create a grid with 2 columns. If you change the scrollDirection to
           // horizontal, this produces 2 rows.
           crossAxisCount: 1,
@@ -176,14 +192,16 @@ setState(() {
           // Generate 100 widgets that display their index in the List.
           children: 
             List.generate(name.length,(index){
-              if((name.length- description.length ==0) && (description.length - photo.length==0)){
+              ///if((name.length- description.length ==0) && (description.length - photo.length==0)){
                 return  Container(
         width:MediaQuery.of(context).size.width,
-        height: 250,
-        child: Card(child:Column(
+      //  height: 250,
+        child: Card(
+          child:Column(
           children:[SizedBox(height:10),
           Row(children: [
-            Text(name[index])
+            Text("maham",style:TextStyle(fontWeight:FontWeight.bold),)
+            //Text(name[index])
             ,SizedBox(width:15),CircleAvatar(
 
             ),
@@ -191,29 +209,31 @@ setState(() {
           
             
             SizedBox(height:10),
-            Text(description[index]),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width:MediaQuery.of(context).size.width,
-        height: 120
-                ,
-                decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(photo[index]), fit: BoxFit.cover)),),
-            ),
+           Text("my app"),
+           // Text(description[index]),
+            Container(
+             // width:MediaQuery.of(context).size.width,
+               height: 120
+              ,
+              decoration: BoxDecoration(
+            image: DecorationImage(
+                image:
+                    AssetImage("images/MSG.png"),
+               // NetworkImage(photo[index]),
+
+                fit: BoxFit.fitHeight)),),
                  SizedBox(height:10),
                  Row(
                    children:[
                      Container(
-                  width: MediaQuery.of(context).size.width/2 -9,
+                  //width: MediaQuery.of(context).size.width/2 -9,
                   height: 30.0,
                   margin: EdgeInsets.symmetric(vertical: 3.0),
                   child: SizedBox.expand(
                       child: OutlineButton(
                           child: Text('Like',
                               style:
-                                  TextStyle(fontSize: 20, color: Colors.green)),
+                                  TextStyle(fontSize: 15, color: Colors.green)),
                           borderSide: BorderSide(
                             color: Colors.amber,
                             style: BorderStyle.solid,
@@ -260,10 +280,16 @@ setState(() {
       )
     );
 
-              }
-              else{
-                return Container(child: Text("No Posts",style: TextStyle(color: Colors.amber),),);
-              }
+              //}
+//            //  else{
+//                return
+//                  Padding(
+//                    padding: const EdgeInsets.only(top:8.0,left:10),
+//                    child: Container(
+//
+//                    child: Text("No Posts",style: TextStyle(color: Colors.amber),),),
+//                  );
+//             // }
           
       
             }))));

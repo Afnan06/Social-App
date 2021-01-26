@@ -127,7 +127,7 @@ class _MyProfileState extends State<MyProfile> {
                 //)
               ],
 
-              title: Text("MYPROFILE"),
+              title: Text("MYPROFILE",style:TextStyle(color:Colors.white),),
     backgroundColor: Colors.green[700],
     bottomOpacity: 0,
     elevation: 0,
