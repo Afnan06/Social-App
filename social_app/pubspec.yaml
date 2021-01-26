@@ -41,7 +41,7 @@ dependencies:
   flutter_screenutil: ^4.0.2+3
   hexcolor: ^1.0.6
   # device_preview: ^0.5.5
-  device_preview: ^0.5.5
+  
   image_picker: ^0.6.7+21
   geolocator: 5.0.1
   # path_provider: ^0.5.0+1

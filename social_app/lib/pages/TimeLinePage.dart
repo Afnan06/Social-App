@@ -130,6 +130,7 @@ setState(() {
     return loading ? Loading():Scaffold(
       appBar: header(context, isAppTitle: true),
       body:
+      
        Container(
         child: 
           GridView.count(
@@ -140,14 +141,20 @@ setState(() {
           // Generate 100 widgets that display their index in the List.
           children: 
             List.generate(name.length,(index){
-          
-      return  Container(
+              if((name.length- description.length ==0) && (description.length - photo.length==0)){
+                return  Container(
         width:MediaQuery.of(context).size.width,
         height: 250,
         child: Card(child:Column(
           children:[SizedBox(height:10),
+          Row(children: [
+            Text(name[index])
+            ,SizedBox(width:15),CircleAvatar(
+
+            ),
+          ],),
           
-            Text(name[index]),
+            
             SizedBox(height:10),
             Text(description[index]),
             Padding(
@@ -217,6 +224,13 @@ setState(() {
         ),
       )
     );
+
+              }
+              else{
+                return Container(child: Text("No Posts",style: TextStyle(color: Colors.amber),),);
+              }
+          
+      
             }))));
     
   }
