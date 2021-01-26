@@ -128,7 +128,42 @@ setState(() {
   @override
   Widget build(context) {
     return loading ? Loading():Scaffold(
-      appBar: header(context, isAppTitle: true),
+       appBar: PreferredSize(
+               child: AppBar(
+                      actions: [
+                        IconButton(icon:Icon(Icons.mail_outline,color:Colors.white,), onPressed: (){
+                          Navigator.pushNamed(context, "/search");
+                        }
+
+
+                        ),
+                        IconButton(icon:Icon(Icons.search_rounded,color:Colors.white,),onPressed: (){
+                         // Navigator.push(context, "/fireUsers");
+                          Navigator.pushNamed(context, "/search");
+                        },),
+                            GestureDetector(
+                                   onTap: ()async{
+                                        await _auth.signOut();
+                                              },
+                child:
+                             Padding(
+                  padding: EdgeInsets.fromLTRB(8, 15, 15, 8),
+                  //const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "Logout",style:TextStyle(
+                                               color:Colors.white
+                                             ),
+                                                     ),
+                                                    ),
+                                                            )
+                                                               ],
+                 title: Text("Profile",style:TextStyle(color:Colors.white),),
+            backgroundColor: Colors.green[700],
+            bottomOpacity: 0,
+            elevation: 0,
+          ),
+          preferredSize: Size.fromHeight(50)
+          ),
       body:
       
        Container(

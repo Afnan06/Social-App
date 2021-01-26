@@ -390,6 +390,7 @@ class _UploadPageState extends State<UploadPage>
 
   @override
   Widget build(BuildContext context) {
+    
     return file == null ? displayUploadScreen() : displayUploadFormScreen();
   }
 }

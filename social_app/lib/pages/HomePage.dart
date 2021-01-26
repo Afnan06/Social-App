@@ -66,9 +66,9 @@ class _HomePageState extends State<HomePage> {
       body: PageView(
         children: <Widget>[
           TimeLinePage(),
-          SearchPage(),
+         SearchPage(),
           UploadPage(),
-          NotificationsPage(),
+          //NotificationsPage(),
           // ProfilePage(),
           ProfilePage(
             userProfileId: currentUser.uid,
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.home)),
           BottomNavigationBarItem(icon: Icon(Icons.search)),
           BottomNavigationBarItem(icon: Icon(Icons.photo_camera, size: 37.0)),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite)),
+          //BottomNavigationBarItem(icon: Icon(Icons.favorite)),
           BottomNavigationBarItem(icon: Icon(Icons.person)),
         ],
       ),
